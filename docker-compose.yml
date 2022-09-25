@@ -23,6 +23,7 @@ services:
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_HOST: db
+      DEVISE_JWT_SECRET_KEY: 0Fbrnc09eYEBqFOOZHeD5to1dnyjpU3nVXHH4CRQ
   front:
     build: ./frontend
     command: yarn run dev -p 3333

@@ -9,7 +9,7 @@ up_build:
 
 # Specific commands to backend
 up_backend:
-	docker compose up backend
+	docker compose up back
 back_bash:
 	docker exec -it $$(docker ps --filter name=back -q) bash
 migrate:
@@ -28,7 +28,7 @@ rubocop_fix_all:
 	docker exec -it $$(docker ps --filter name=back -q) rubocop -A
 
 # Specific commands to frontend
-up_backend:
+up_frontend:
 	docker compose up frontend
 front_bash:
 	docker exec -it $$(docker ps --filter name=front -q) bash
