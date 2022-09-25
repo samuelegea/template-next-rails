@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  front:
+    build: .
+    command: yarn run dev -- -p 3333
+    volumes:
+      - .:/frontend
+    ports:
+      - "3333:3333"
