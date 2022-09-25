@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    restart: "no"
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgresdb:/var/lib/postgresql/data/
+  back:
+    build: ./backend
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./backend:/backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: db
+  front:
+    build: ./frontend
+    command: yarn run dev -p 3333
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - "3333:3333"
+    depends_on:
+      - back
+volumes:
+  postgresdb:
